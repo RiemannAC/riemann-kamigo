@@ -1,0 +1,2 @@
+class KamigoController < ApplicationController
+end

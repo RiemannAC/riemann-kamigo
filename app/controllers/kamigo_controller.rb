@@ -40,7 +40,11 @@ class KamigoController < ApplicationController
 
   def sent_request
     uri = URI('http://localhost:3000/kamigo/response_body')
-    response = Net::HTTP.get(uri)
-    render plain: response
+    response = Net::HTTP.get(uri).force_encoding("UTF-8") # ASCII-8BIT 轉 UTF-8，才可以和 UTF-8 編碼的"油"加在一起
+    render plain: translate_to_korean(response)
+  end
+
+  def translate_to_korean(message)
+    "#{message}油~"
   end
 end

@@ -1,6 +1,7 @@
 class KamigoController < ApplicationController
   # 需要使用第三方 post request => 關閉 CSRF 驗證
   protect_from_forgery with: :null_session
+  require 'net/http'
 
   def eat
     render plain: "吃土啦"
@@ -35,5 +36,11 @@ class KamigoController < ApplicationController
   def webhook
     render plain: params
     # render plain: params['message']['text'] 回傳部份資料的設定方式
+  end
+
+  def sent_request
+    uri = URI('http://localhost:3000/kamigo/response_body')
+    response = Net::HTTP.get(uri)
+    render plain: response
   end
 end

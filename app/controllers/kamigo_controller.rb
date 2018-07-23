@@ -21,4 +21,11 @@ class KamigoController < ApplicationController
       "#{key}: #{value}"
     }.sort#.join{"\n"} 不加是 json 加了反沒換行
   end
+
+  # response_body 已被 Rails 使用
+  def show_response_body
+    puts "===這是設定前的 response.body:==="
+    render plain: "虎哇花哈哈哈" # response.body 的內容
+    puts "===這是設定後的 response.body: #{response.body}==="
+  end
 end

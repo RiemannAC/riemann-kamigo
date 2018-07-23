@@ -10,4 +10,8 @@ class KamigoController < ApplicationController
       "#{key}: #{value}"
     }.sort.join("\n")
   end
+
+  def request_body
+    render plain: request.body
+  end
 end

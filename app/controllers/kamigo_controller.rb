@@ -1,4 +1,7 @@
 class KamigoController < ApplicationController
+  # 需要使用第三方 post request => 關閉 CSRF 驗證
+  protect_from_forgery with: :null_session
+
   def eat
     render plain: "吃土啦"
   end
@@ -27,5 +30,9 @@ class KamigoController < ApplicationController
     puts "===這是設定前的 response.body:==="
     render plain: "虎哇花哈哈哈" # response.body 的內容
     puts "===這是設定後的 response.body: #{response.body}==="
+  end
+
+  def webhook
+    head :ok
   end
 end

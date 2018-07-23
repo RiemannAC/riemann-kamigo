@@ -33,6 +33,7 @@ class KamigoController < ApplicationController
   end
 
   def webhook
-    head :ok
+    render plain: params
+    # render plain: params['message']['text'] 回傳部份資料的設定方式
   end
 end
